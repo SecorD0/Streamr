@@ -22,7 +22,7 @@ docker run -it --restart=always --name=streamr_node -d -p 7170:7170 -p 7171:7171
 . <(wget -qO - https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
 echo -e '\nThe node was \e[40m\e[92mstarted\e[0m.\n'
 echo -e 'Remember to save this file:'
-echo -e "\033[0;31m$HOME/massa/massa-node/config/node_privkey.key\e[0m\n"
+echo -e "\033[0;31m$HOME/.streamrDocker/broker-config.json\e[0m\n"
 echo -e '\tv \e[40m\e[92mUseful commands\e[0m v\n'
 echo -e 'To view the node log: \e[40m\e[92mstreamr_log\e[0m'
 echo -e 'To view the list of all containers: \e[40m\e[92mdocker ps -a\e[0m'
