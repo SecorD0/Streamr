@@ -15,7 +15,11 @@ expect <<END
 	send -- "a\n"
 	expect "Select a port for"
 	send -- "\n"
-	expect "Select a path to store"
+	expect "Select a port for"
+	send -- "\n"
+	expect "Select a port for"
+	send -- "\n"
+	expect "Select a path to"
 	send -- "\n"
 	expect eof
 END
