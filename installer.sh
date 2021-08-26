@@ -13,6 +13,8 @@ expect <<END
 	send -- "\n"
 	expect "Select the plugins"
 	send -- "a\n"
+	expect "Select a port for"
+	send -- "\n"
 	expect "Select a path to store"
 	send -- "\n"
 	expect eof
