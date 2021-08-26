@@ -12,7 +12,7 @@ expect <<END
 	expect "Do you want to generate"
 	send -- "\n"
 	expect "Select the plugins"
-	send -- "\n"
+	send -- "a\n"
 	expect "Select a path to store"
 	send -- "\n"
 	expect eof
