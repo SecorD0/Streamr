@@ -13,13 +13,13 @@ expect <<END
 	send -- "\n"
 	expect "Select the plugins"
 	send -- "a\n"
-	expect "Select a port for"
+	expect "Select a port for the websocket"
 	send -- "\n"
-	expect "Select a port for"
+	expect "Select a port for the mqtt"
 	send -- "\n"
-	expect "Select a port for"
+	expect "Select a port for the publishHttp"
 	send -- "\n"
-	expect "Select a path to"
+	expect "Select a path to store"
 	send -- "\n"
 	expect eof
 END
