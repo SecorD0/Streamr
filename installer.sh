@@ -37,4 +37,3 @@ echo -e 'To delete the node container:'
 echo -e '\e[40m\e[92mdocker stop streamr_node\e[0m'
 echo -e '\e[40m\e[92mdocker container rm streamr_node\e[0m'
 echo -e 'To restart the node: \e[40m\e[92mdocker restart streamr_node\e[0m\n'
-streamr_log
