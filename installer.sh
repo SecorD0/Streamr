@@ -11,6 +11,8 @@ expect <<END
 	spawn docker run -it -v $(cd ~/.streamrDocker; pwd):/root/.streamr streamr/broker-node:testnet bin/config-wizard
 	expect "Do you want to generate"
 	send -- "\n"
+	expect "We strongly recommend"
+	send -- "y\n"
 	expect "Select the plugins"
 	send -- "a\n"
 	expect "Select a port for the websocket"
