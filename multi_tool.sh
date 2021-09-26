@@ -80,14 +80,13 @@ else
 	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/docker_installer.sh) --
 	mkdir $HOME/.streamrDocker
 	if [ -f $HOME/.streamrDocker/broker-config.json ]; then
-		private_key=`cat "/root/.streamrDocker/broker-config.json" | jq -r ".ethereumPrivateKey"`
 		expect <<END
 	set timeout 300
 	spawn docker run -it -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node:testnet bin/config-wizard
 	expect "Do you want to generate"
 	send -- "\033\[B\n"
 	expect "Please provide the private key"
-	send -- "${private_key}\n"
+	send -- "`cat $HOME/.streamrDocker/broker-config.json | jq -r ".ethereumPrivateKey"`\n"
 	expect "Select the plugins"
 	send -- "a\n"
 	expect "Provide a port for the websocket"
@@ -102,7 +101,6 @@ else
 	send -- "y\n"
 	expect eof
 END
-		unset private_key
 	else
 		expect <<END
 	set timeout 300
@@ -125,6 +123,7 @@ END
 END
 	fi
 	docker run -it --restart=always --name=streamr_node -d -p 7170:7170 -p 7171:7171 -p 1883:1883 -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node:testnet
+	printf_n "${C_LGn}Done!${RES}\n"
 	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) -n "streamr_log" -v "docker logs streamr_node --follow --tail=100" -a
 	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) -n "streamr_wallet_info" -v ". <(wget -qO- https://raw.githubusercontent.com/SecorD0/Streamr/main/wallet_info.sh) | jq" -a
 	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
