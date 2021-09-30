@@ -34,7 +34,7 @@ wallet_info=$(wget -qO- "https://testnet1.streamr.network:3013/stats/$wallet_add
 codes_claimed=$(jq ".claimCount" <<< $wallet_info)
 codes_percentage=$(jq ".claimPercentage" <<< $wallet_info)
 appr_balance_DATA=`echo "$codes_claimed*0.015" | bc -l`
-appr_balance_USDT=`echo "$appr_balance_DATA*0.11" | bc -l`
+appr_balance_USDT=`echo "$appr_balance_DATA*$(. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/token_price.sh) -p streamr)" | bc -l`
 printf_n '{"wallet_address": "%s", "codes_claimed": %d, "codes_percentage": %0.3f, "appr_balance_DATA": %0.3f, "appr_balance_USDT": %0.3f}' \
 "$wallet_address" \
 "$codes_claimed" \
