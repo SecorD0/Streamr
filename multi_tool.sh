@@ -77,7 +77,7 @@ else
 	sudo apt update
 	sudo apt upgrade -y
 	sudo apt install git jq expect build-essential -y
-	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/docker_installer.sh) --
+	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/installers/docker.sh) --
 	mkdir $HOME/.streamrDocker
 	if [ -f $HOME/.streamrDocker/broker-config.json ]; then
 		expect <<END
@@ -124,8 +124,8 @@ END
 	fi
 	docker run -it --restart=always --name=streamr_node -d -p 7170:7170 -p 7171:7171 -p 1883:1883 -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node:testnet
 	printf_n "${C_LGn}Done!${RES}\n"
-	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) -n "streamr_log" -v "docker logs streamr_node --follow --tail=100" -a
-	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) -n "streamr_wallet_info" -v ". <(wget -qO- https://raw.githubusercontent.com/SecorD0/Streamr/main/wallet_info.sh) | jq" -a
+	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n "streamr_log" -v "docker logs streamr_node --follow --tail=100" -a
+	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n "streamr_wallet_info" -v ". <(wget -qO- https://raw.githubusercontent.com/SecorD0/Streamr/main/wallet_info.sh) | jq" -a
 	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
 	printf_n "
 The node was ${C_LGn}started${RES}.
