@@ -28,7 +28,6 @@ done
 # Functions
 printf_n(){ printf "$1\n" "${@:2}"; }
 # Actions
-sudo apt install bc -y &>/dev/null
 wallet_address=$(docker logs streamr_node | grep -oPm1 "(?<=Network node 'miner-node' \(id\=)([^%]+)(?=\) running)")
 wallet_info=$(wget -qO- "https://testnet1.streamr.network:3013/stats/$wallet_address")
 codes_claimed=$(jq ".claimCount" <<< $wallet_info)
