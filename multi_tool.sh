@@ -69,8 +69,7 @@ elif [ "$type" = "update" ]; then
 	containers=`docker ps -a | awk '{print $1,$2}' | grep streamr | awk '{print $1}'`
 	docker stop $containers
 	docker container rm $containers
-	docker pull streamr/broker-node:testnet
-	docker run -it --restart=always --name=streamr_node -d -p 7170:7170 -p 7171:7171 -p 1883:1883 -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node:testnet
+	docker run -it --restart=always --name=streamr_node -d -p 7170:7170 -p 7171:7171 -p 1883:1883 -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node
 	printf_n "${C_LGn}Done!${RES}\n"
 else
 	printf_n "${C_LGn}Node installation...${RES}"
@@ -82,7 +81,7 @@ else
 	if [ -f $HOME/.streamrDocker/broker-config.json ]; then
 		expect <<END
 	set timeout 300
-	spawn docker run -it -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node:testnet bin/config-wizard
+	spawn docker run -it -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node bin/config-wizard
 	expect "Do you want to generate"
 	send -- "\033\[B\n"
 	expect "Please provide the private key"
@@ -104,7 +103,7 @@ END
 	else
 		expect <<END
 	set timeout 300
-	spawn docker run -it -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node:testnet bin/config-wizard
+	spawn docker run -it -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node bin/config-wizard
 	expect "Do you want to generate"
 	send -- "\n"
 	expect "We strongly recommend"
@@ -122,7 +121,7 @@ END
 	expect eof
 END
 	fi
-	docker run -it --restart=always --name=streamr_node -d -p 7170:7170 -p 7171:7171 -p 1883:1883 -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node:testnet
+	docker run -it --restart=always --name=streamr_node -d -p 7170:7170 -p 7171:7171 -p 1883:1883 -v `cd ~/.streamrDocker; pwd`:/root/.streamr streamr/broker-node
 	printf_n "${C_LGn}Done!${RES}\n"
 	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n "streamr_log" -v "docker logs streamr_node --follow --tail=100" -a
 	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n "streamr_wallet_info" -v ". <(wget -qO- https://raw.githubusercontent.com/SecorD0/Streamr/main/wallet_info.sh) | jq" -a
