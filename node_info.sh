@@ -28,7 +28,8 @@ while test $# -gt 0; do
 		echo -e "         (you can send Pull request with new texts to add a language)"
 		echo -e "https://teletype.in/@letskynode/Streamr_staking_EN — English-language guide"
 		echo -e "https://teletype.in/@letskynode/Streamr_staking_RU — Russian-language guide"
-		echo -e "https://t.me/letskynode — node Community"
+		echo -e "https://t.me/OnePackage — noderun and tech community"
+		echo -e "https://learning.1package.io — guides and articles"
 		echo -e "https://teletype.in/@letskynode — guides and articles"
 		echo
 		return 0 2>/dev/null; exit 0
